@@ -10,7 +10,8 @@ class AboutForExpressions extends KoanSuite {
     for (i <- someNumbers)
       sum += i
 
-    sum should equal(__)
+    info(""+sum)
+    sum should equal(45)
   }
 
   koan("For loops can contain additional logic") {
@@ -19,16 +20,24 @@ class AboutForExpressions extends KoanSuite {
     // sum only the even numbers
     for (i <- someNumbers)
       if (i % 2 == 0) sum += i
-
-    sum should equal(__)
+    info(""+sum)
+    sum should equal(20)
   }
   
   koan("For expressions can nest, with later generators varying more rapidly than earlier ones") {
     val xValues = Range(1, 5)
     val yValues = Range(1, 3)
     val coordinates = for {
+
       x <- xValues
-      y <- yValues} yield (x, y)
-    coordinates(4) should be(__, __)
+      y <- yValues
+
+    } yield (x, y)
+
+    //info(coordinates(4).toString())
+
+    //amfor (cord <- coordinates.reverse) info(""+cord)
+
+    coordinates(4) should be(3,1)
   }
 }
